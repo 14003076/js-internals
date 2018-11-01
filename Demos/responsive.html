@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function startWorker() {
+            var heavyWork = new Worker("32_responsive.js");
+            alert("Work is in progress...");
+            heavyWork.onmessage = function(event){
+                document.getElementById("status").innerHTML=event.data;
+            }
+        }
+        function doSomethingElse(){
+            alert("Hello!");
+        }
+    </script>
+</head>
+<body>
+    
+        <button onclick="startWorker()">Start</button>
+        <button onclick="doSomethingElse()">Do Something Else</button>
+        <div id="status"></div>
+</body>
+</html>
